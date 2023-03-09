@@ -20,4 +20,3 @@
 > Fill the `addr` in the memory `from` with `num` of the `count` quantity
 ## len(from)
 > Get memory length
-
