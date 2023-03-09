@@ -34,6 +34,9 @@ const options = {
             if (count < 0 || src < 0
                 || dst < 0) return 2;
 
+            let is_same_mem = from_mem === to_mem;
+            if (is_same_mem && dst == src || count == 0) return; // no in place copy
+
             let from_mem = from.memory;
             let to_mem = to.memory;
             let src_len = from_mem.length;
@@ -44,8 +47,7 @@ const options = {
             let safe_src_stop = min(src_stop, src_len);
             let safe_dst_stop = min(dst_stop, dst_len);
 
-            if (from_mem === to_mem && dst > src) {
-                print("b")
+            if (is_same_mem && dst > src) {
                 let [i, j] = [src_stop - 1, dst_stop - 1];
                 while (i >= safe_src_stop && j >= safe_dst_stop) {
                     --i; --j;
@@ -55,7 +57,6 @@ const options = {
                 while (i >= src && j >= dst)
                     to_mem[j--] = from_mem[i--];
             } else {
-                print("a")
                 let [i, j] = [src, dst];
                 while (i < safe_src_stop && j < safe_dst_stop)
                     to_mem[j++] = from_mem[i++];
