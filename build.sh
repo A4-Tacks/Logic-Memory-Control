@@ -47,7 +47,7 @@ import jq
 
 cd "$(dirname "$0")"
 
-cp ./README.md ./hash_list.txt ./src
+cp ./README.md ./hash_list.txt ./UpdateLog.md ./src
 
 proot="$(pwd -P)"
 

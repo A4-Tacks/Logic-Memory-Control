@@ -3,6 +3,6 @@
     "displayName": "LMCtrl",
     "author": "A4-Tacks",
     "description": "Logic virtual machine memory operation",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "minGameVersion": 136
 }
