@@ -34,13 +34,13 @@ const options = {
             if (count < 0 || src < 0
                 || dst < 0) return 2;
 
-            let is_same_mem = from_mem === to_mem;
-            if (is_same_mem && dst == src || count == 0) return; // no in place copy
-
             let from_mem = from.memory;
             let to_mem = to.memory;
             let src_len = from_mem.length;
             let dst_len = to_mem.length;
+
+            let is_same_mem = from_mem === to_mem;
+            if (is_same_mem && dst == src || count == 0) return; // no in place copy
 
             let src_stop = src + count;
             let dst_stop = dst + count;
