@@ -56,7 +56,7 @@ const options = {
 				while (i > src && j > dst)
 					to_mem[--j] = from_mem[--i];
 			} else {
-				let [i, j] = [src, desc];
+				let [i, j] = [src, dst];
 				while (i < safe_src_stop && j < safe_dst_stop)
 					to_mem[j++] = from_mem[i++];
 				while (i++ < src_stop && j < safe_dst_stop)

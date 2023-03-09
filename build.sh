@@ -47,6 +47,8 @@ import jq
 
 cd "$(dirname "$0")"
 
+cp ./README.md ./hash_list.txt ./src
+
 proot="$(pwd -P)"
 
 cmkdir "$proot/"{src,package,backup,project}
