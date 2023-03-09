@@ -3,6 +3,10 @@
 - Game Version: v7 - v8
 
 
+# Info
+- repo: `https://github.com/A4-Tacks/Logic-Memory-Control`
+
+
 # Mode:
 ## mov(from, to, dst, src, count)
 > Copy `count` data from `src` in memory `from` to `dst`
