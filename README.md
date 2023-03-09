@@ -4,7 +4,7 @@
 
 
 # Info
-- repo: `https://github.com/A4-Tacks/Logic-Memory-Control`
+- repo: <https://github.com/A4-Tacks/Logic-Memory-Control>
 
 
 # Mode:
