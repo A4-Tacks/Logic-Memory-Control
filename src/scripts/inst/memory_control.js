@@ -40,7 +40,7 @@ const options = {
             let dst_len = to_mem.length;
 
             let is_same_mem = from_mem === to_mem;
-            if (is_same_mem && dst == src || count == 0) return; // no in place copy
+            if (is_same_mem && dst == src || count == 0) return 1; // 条件不满足
 
             let src_stop = src + count;
             let dst_stop = dst + count;
