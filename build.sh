@@ -65,7 +65,7 @@ then
 fi
 
 name="${name// /_}"
-package_name="${name}_v${version}_$(date +"$DATE_FORMAT")"
+package_name="${name}_v${version}_${minGameVersion}_$(date +"$DATE_FORMAT")"
 
 echovar proot
 echovar name
