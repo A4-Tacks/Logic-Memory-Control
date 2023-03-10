@@ -49,4 +49,5 @@
 > jump 6 lessThan i len
 > control enabled switch1 true 0 0 0
 > ```
-- Because of the use of this statement, in Mindustry, the time complexity of the binary insertion sorting algorithm reaches O(n log n)
+- Because of the use of this statement, in Mindustry, the time complexity of the BinaryInsertionSort algorithm reaches O(n log n)
+- Random data is slightly faster than TimSort
