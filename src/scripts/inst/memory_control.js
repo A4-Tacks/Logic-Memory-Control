@@ -1,3 +1,4 @@
+// # 卖个萌喵~
 const is_operable_memory = (
     (exec, mem) => (
         !(mem === null)
@@ -13,35 +14,15 @@ const OPTS_WIDTH = 90;
 const NAME = "memctrl";
 
 
-const options = {
-    /* args: { name: ["default_value", "build_type"] } */
-    mov: {
-        /* copy memory */
-        args: {
-            from: ["cell1", "building"],
-            to: ["cell2", "building"],
-            dst: ["0", "numi"],
-            src: ["0", "numi"],
-            count: ["64", "numi"],
-        },
-        run(exec, args) {
-            let [from, to, src, dst, count] =
-                [args.from, args.to, args.src, args.dst, args.count];
-
-            // 任意一方不该操作则返回
-            if (! (is_operable_memory(exec, from)
-                && is_operable_memory(exec, to))) return 1;
-            if (count < 0 || src < 0
-                || dst < 0) return 2;
-
-            let from_mem = from.memory;
-            let to_mem = to.memory;
-            let src_len = from_mem.length;
-            let dst_len = to_mem.length;
-
+const lib = { // {{{
+    mem: {
+        copy(from_mem, to_mem, dst, src, count) {
             let is_same_mem = from_mem === to_mem;
             if (is_same_mem && dst == src || count == 0) return 1; // 条件不满足
+            if (count < 0 || src < 0 || dst < 0) return 2;
 
+            let src_len = from_mem.length;
+            let dst_len = to_mem.length;
             let src_stop = src + count;
             let dst_stop = dst + count;
             let safe_src_stop = min(src_stop, src_len);
@@ -65,7 +46,31 @@ const options = {
             }
         },
     },
-    rev: {
+}; // }}}
+
+const options = {
+    /* args: { name: ["default_value", "build_type"] } */
+    mov: { // {{{1
+        /* copy memory */
+        args: {
+            from: ["cell1", "building"],
+            to: ["cell2", "building"],
+            dst: ["0", "numi"],
+            src: ["0", "numi"],
+            count: ["64", "numi"],
+        },
+        run(exec, args) {
+            let [from, to, src, dst, count] =
+                [args.from, args.to, args.src, args.dst, args.count];
+
+            // 任意一方不该操作则返回
+            if (! (is_operable_memory(exec, from)
+                && is_operable_memory(exec, to))) return 1;
+
+            return lib.mem.copy(from.memory, to.memory, dst, src, count);
+        },
+    },
+    rev: { // {{{1
         /* reverse memory */
         args: {
             from: ["cell1", "building"],
@@ -86,7 +91,7 @@ const options = {
             while (i < j) swap(i++, j--);
         },
     },
-    swap: {
+    swap: { // {{{1
         args: {
             from: ["cell1", "building"],
             a: ["0", "numi"],
@@ -103,7 +108,7 @@ const options = {
             [mem[a], mem[b]] = [mem[b], mem[a]]; // swap
         },
     },
-    swps: {
+    swps: { // {{{1
         /* 使用手摇算法完成多元素不等数交换
             交换区间 [l1, r1] 与 [l2, r2]
          */
@@ -138,7 +143,7 @@ const options = {
             rev(l1, r2);
         },
     },
-    fill: {
+    fill: { // {{{1
         args: {
             from: ["cell1", "building"],
             num: ["0", "num"],
@@ -158,7 +163,7 @@ const options = {
                 mem[i] = num;
         },
     },
-    len: {
+    len: { // {{{1
         args: {
             from: ["cell1", "building"],
         },
@@ -169,7 +174,7 @@ const options = {
             return from.memory.length;
         },
     },
-};
+}; // }}}1
 
 const MemCtrlI = {
     _(builder, mode, result, args) {
